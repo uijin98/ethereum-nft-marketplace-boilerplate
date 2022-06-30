@@ -65,7 +65,9 @@ function NFTBalance() {
 
 
   async function approveAll(nft) {
-    setLoading(true);  
+    setLoading(true);
+    console.log("TEST", nft.token_address) 
+    console.log("TEST", marketAddress) 
     const ops = {
       contractAddress: nft.token_address,
       functionName: "setApprovalForAll",
@@ -238,7 +240,7 @@ function NFTBalance() {
           />
           <Input
             autoFocus
-            placeholder="Listing Price in MATIC"
+            placeholder="Listing Price in ETH"
             onChange={(e) => setPrice(e.target.value)}
           />
         </Spin>

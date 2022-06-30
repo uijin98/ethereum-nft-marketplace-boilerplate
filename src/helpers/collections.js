@@ -25,6 +25,12 @@ export const networkCollections = {
     },
     {
       image:
+        "https://gateway.pinata.cloud/ipfs/QmWDDtSC7MiGVRsTwpZHNM7EA62UpiUzV3b1c8MPxPBPt8",
+      name: "MyNFT",
+      addrs: "0xe33cda602983cd05508e56c38464f2dcfa44bf8b",
+    },
+    {
+      image:
         "https://img.seadn.io/files/adf9db21a43c9fd394dc89a0d647bec3.png?auto=format&fit=max&w=512",
       name: "CryptoPunk #2993",
       addrs: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/2993",

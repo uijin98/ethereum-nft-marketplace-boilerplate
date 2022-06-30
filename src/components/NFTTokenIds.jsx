@@ -165,6 +165,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
         e.sold === false &&
         e.confirmed === true
     );
+    console.log("TEST3", fetchMarketItems )
     return result;
   };
 
