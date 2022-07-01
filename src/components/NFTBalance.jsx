@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button, Tag } from "antd";
+import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
 import { useNFTBalance } from "hooks/useNFTBalance";
 import { FileSearchOutlined, ShoppingCartOutlined, TagOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
+import HashTag from "../HashTag"
 const { Meta } = Card;
 
 const styles = {
@@ -243,7 +244,7 @@ function NFTBalance() {
               marginBottom: "15px",
             }}
           />
-          {/*<Tag/>*/}
+          <HashTag />
         </Spin>
       </Modal>
 
@@ -282,10 +283,6 @@ function NFTBalance() {
           />
         </Spin>
       </Modal>
-
-
-
-      
     </>
   );
 }
