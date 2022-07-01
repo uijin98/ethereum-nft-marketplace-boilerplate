@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
+import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button, Tag } from "antd";
 import { useNFTBalance } from "hooks/useNFTBalance";
-import { FileSearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { FileSearchOutlined, ShoppingCartOutlined, TagOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
@@ -26,6 +26,11 @@ function NFTBalance() {
   const { Moralis } = useMoralis();
   const [visible, setVisibility] = useState(false);
   const [nftToSend, setNftToSend] = useState(null);
+
+  const [visible1, setVisibility1] = useState(false);
+  const [nftToSend1, setNftToSend1] = useState(null);
+
+
   const [price, setPrice] = useState(1);
   const [loading, setLoading] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
@@ -96,6 +101,11 @@ function NFTBalance() {
   const handleSellClick = (nft) => {
     setNftToSend(nft);
     setVisibility(true);
+  };
+
+  const handleTagClick = (nft) => {
+    setNftToSend1(nft);
+    setVisibility1(true);
   };
 
   function succList() {
@@ -189,6 +199,9 @@ function NFTBalance() {
                     }
                   />
                 </Tooltip>,
+                <Tooltip title="HashTag">
+                  <TagOutlined onClick={() => handleTagClick(nft)} />
+                </Tooltip>,
                 <Tooltip title="List NFT for sale">
                   <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
                 </Tooltip>,
@@ -209,6 +222,30 @@ function NFTBalance() {
             </Card>
           ))}
       </div>
+      
+      <Modal
+        title={`HashTag ${nftToSend1?.name} #${nftToSend1?.token_id}`}
+        visible={visible1}
+        onCancel={() => setVisibility1(false)}
+        footer={[
+          <Button >
+            Save
+          </Button>,
+        ]}
+      >
+        <Spin spinning={loading}>
+          <img
+            src={`${nftToSend1?.image}`}
+            style={{
+              width: "250px",
+              margin: "auto",
+              borderRadius: "10px",
+              marginBottom: "15px",
+            }}
+          />
+          {/*<Tag/>*/}
+        </Spin>
+      </Modal>
 
       <Modal
         title={`List ${nftToSend?.name} #${nftToSend?.token_id} For Sale`}
@@ -245,6 +282,10 @@ function NFTBalance() {
           />
         </Spin>
       </Modal>
+
+
+
+      
     </>
   );
 }
