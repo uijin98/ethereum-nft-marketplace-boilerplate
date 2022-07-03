@@ -6,7 +6,7 @@ import { FileSearchOutlined, ShoppingCartOutlined, TagOutlined } from "@ant-desi
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
-import HashTag from "../HashTag"
+import  HashTag  from "../HashTag"
 const { Meta } = Card;
 
 const styles = {
@@ -220,6 +220,7 @@ function NFTBalance() {
               key={index}
             >
               <Meta title={nft.name} description={nft.contract_type} />
+              <p>입력된 해시태그</p>
             </Card>
           ))}
       </div>

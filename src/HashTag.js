@@ -24,16 +24,17 @@ const HashTag = () => {
   }
 
   return (
-    <div style={styles.wholeBox}>
-      <div style ={styles.tagBox}>
-        {tagList.map((tagItem, index) => {
-          return (
-            <div key={index} style={styles.tagItem}>
-              <p>{tagItem}</p>
-              <button style={styles.button} onClick={deleteTagItem}>X</button>
-            </div>
-          )
-        })}
+    <div style={{padding:"10px", height:"150px"}}>
+      <div style ={{
+        display:"flex",
+        alignItems:"center",
+        flexWrap:"wrap",
+        minHeight:"30px",
+        margin:"10px",
+        padding:"0 10px",
+        border: "1px",
+        borderRadius:"10px"
+      }}>
         <input
           type='text'
           placeholder='해시태그를 입력하려면 Enter를 누르세요'
@@ -41,33 +42,52 @@ const HashTag = () => {
           onChange={e => setTagItem(e.target.value)}
           value={tagItem}
           onKeyPress={onKeyPress}
-          size={35}
+          size={50}
+          style={{
+            display:'inline-flex',
+            borderRadius:"5px",
+            outline:"none",
+            cursor:"text",
+            marginLeft:"25px"
+          }}
         />
+        {tagList.map((tagItem, index) => {
+          return (
+            <div 
+              key={index}
+              style={{
+                display:"flex",
+                justifyContent:"space-between",
+                margin:"5px",
+                padding:"5px",
+                borderRadius:"5px",
+                color:"black",
+                fontSize:"13px",
+              }}
+            >
+              <text>{tagItem}</text>
+              <button 
+                style={{
+                  display:"flex",
+                  justifyContent:"center",
+                  alignItems:"center",
+                  width:"15px",
+                  height:"15px",
+                  marginLeft:"10px",
+                  backgroundColor:"white",
+                  borderRadius:"50%",
+                  color:'black',
+                  marginTop:"3px"
+                }}
+                onClick={deleteTagItem}>X
+                </button>
+            </div>
+          )
+        })}
+        
       </div>
     </div>
   )
-}
-
-const styles = {
-  wholeBox: {
-    padding: 10,
-    height: 100
-  },
-  tagBox: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  tagItem: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button : {
-    flex: 1,
-    innerHeight: 15,
-    innerWidth: 15,
-  },
 }
 
 export default HashTag;
