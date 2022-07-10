@@ -276,33 +276,14 @@ function NFTBalance() {
               marginBottom: "15px",
             }}
           />
-          <div style={{padding:"10px", height:"150px"}}>
-            <div style ={{
-              display:"flex",
-              alignItems:"center",
-              flexWrap:"wrap",
-              minHeight:"30px",
-              margin:"10px",
-              padding:"0 10px",
-              border: "1px",
-              borderRadius:"10px"
-            }}>
-              <input
-                type='text'
-                placeholder='해시태그를 입력하려면 Enter를 누르세요'
-                tabIndex={2}
-                onChange={e => setTagItem(e.target.value)}
-                value={tagItem}
-                onKeyPress={onKeyPress}
-                size={50}
-                style={{
-                  display:'inline-flex',
-                  borderRadius:"5px",
-                  outline:"none",
-                  cursor:"text",
-                  marginLeft:"25px"
-                }}
-              />
+          <Input
+            autoFocus
+            placeholder="해시태그를 입력하려면 Enter를 누르세요"
+            tabIndex={2}
+            onChange={(e) => setTagItem(e.target.value)}
+            onKeyPress={onKeyPress}
+            value={tagItem}
+          />
               {tagList.map((tagItem, index) => {
                 return (
                   <div 
@@ -336,9 +317,6 @@ function NFTBalance() {
                   </div>
                 )
               })}
-              
-            </div>
-          </div>
         </Spin>
       </Modal>
 
