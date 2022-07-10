@@ -7,6 +7,7 @@ import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvide
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
 import  HashTag  from "../HashTag"
+
 const { Meta } = Card;
 
 const styles = {
@@ -20,6 +21,7 @@ const styles = {
     gap: "10px",
   },
 };
+
 
 function NFTBalance() {
   const { NFTBalance, fetchSuccess } = useNFTBalance();
@@ -38,6 +40,31 @@ function NFTBalance() {
   const contractABIJson = JSON.parse(contractABI);
   const listItemFunction = "createMarketItem";
   const ItemImage = Moralis.Object.extend("ItemImages");
+
+  const [tagItem, setTagItem] = useState('')
+  const [tagList, setTagList] = useState([])
+
+  const onKeyPress = e => {
+    if (e.target.value.length !== 0 && e.key === 'Enter') {
+      submitTagItem()
+    }
+  }
+
+  const submitTagItem = () => {
+    let updatedTagList = [...tagList]
+    updatedTagList.push(tagItem)
+    setTagList(updatedTagList)
+    setTagItem('')
+  }
+
+  const deleteTagItem = e => {
+    const deleteTagItem = e.target.parentElement.firstChild.innerText
+    const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
+    setTagList(filteredTagList)
+  }
+
+
+
 
   async function list(nft, listPrice) {
     setLoading(true);
@@ -220,7 +247,11 @@ function NFTBalance() {
               key={index}
             >
               <Meta title={nft.name} description={nft.contract_type} />
-              <p>입력된 해시태그</p>
+              {tagList.map((value, index) => (
+                <p>
+                  #{value}
+                </p>
+              ))}
             </Card>
           ))}
       </div>
@@ -230,7 +261,7 @@ function NFTBalance() {
         visible={visible1}
         onCancel={() => setVisibility1(false)}
         footer={[
-          <Button >
+          <Button onClick={() => setVisibility1(false)}>
             Save
           </Button>,
         ]}
@@ -245,7 +276,69 @@ function NFTBalance() {
               marginBottom: "15px",
             }}
           />
-          <HashTag />
+          <div style={{padding:"10px", height:"150px"}}>
+            <div style ={{
+              display:"flex",
+              alignItems:"center",
+              flexWrap:"wrap",
+              minHeight:"30px",
+              margin:"10px",
+              padding:"0 10px",
+              border: "1px",
+              borderRadius:"10px"
+            }}>
+              <input
+                type='text'
+                placeholder='해시태그를 입력하려면 Enter를 누르세요'
+                tabIndex={2}
+                onChange={e => setTagItem(e.target.value)}
+                value={tagItem}
+                onKeyPress={onKeyPress}
+                size={50}
+                style={{
+                  display:'inline-flex',
+                  borderRadius:"5px",
+                  outline:"none",
+                  cursor:"text",
+                  marginLeft:"25px"
+                }}
+              />
+              {tagList.map((tagItem, index) => {
+                return (
+                  <div 
+                    key={index}
+                    style={{
+                      display:"flex",
+                      justifyContent:"space-between",
+                      margin:"5px",
+                      padding:"5px",
+                      borderRadius:"5px",
+                      color:"black",
+                      fontSize:"13px",
+                    }}
+                  >
+                    <text>{tagItem}</text>
+                    <button 
+                      style={{
+                        display:"flex",
+                        justifyContent:"center",
+                        alignItems:"center",
+                        width:"15px",
+                        height:"15px",
+                        marginLeft:"10px",
+                        backgroundColor:"white",
+                        borderRadius:"50%",
+                        color:'black',
+                        marginTop:"3px"
+                      }}
+                      onClick={deleteTagItem}>X
+                      </button>
+                  </div>
+                )
+              })}
+              
+            </div>
+          </div>
         </Spin>
       </Modal>
 
