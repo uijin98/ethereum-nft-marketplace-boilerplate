@@ -18,6 +18,7 @@ import NativeBalance from "components/NativeBalance";
 import "./style.css";
 import Text from "antd/lib/typography/Text";
 import NFTMarketTransactions from "components/NFTMarketTransactions";
+import CardNews from "components/CardNews";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -90,6 +91,9 @@ const App = ({ isServerInfo }) => {
             <Menu.Item key="transactions">
               <NavLink to="/Transactions">📑 Your Transactions</NavLink>
             </Menu.Item>
+            <Menu.Item key="cardNews">
+              <NavLink to="/CardNews">📰 Card News</NavLink>
+            </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
             <Chains />
@@ -107,6 +111,9 @@ const App = ({ isServerInfo }) => {
             </Route>
             <Route path="/Transactions">
               <NFTMarketTransactions />
+            </Route>
+            <Route path="/CardNews">
+              <CardNews />
             </Route>
           </Switch>
           <Redirect to="/NFTMarketPlace" />
