@@ -139,8 +139,10 @@ function NFTBalance() {
   function succList() {
     let secondsToGo = 5;
     const modal = Modal.success({
-      title: "Success!",
-      content: `Your NFT was listed on the marketplace`,
+      //title: "Success!",
+      title: "성공!",
+      //content: `Your NFT was listed on the marketplace`,
+      content: "당신의 NFT가 이제 마켓플레이스에서 판매가 가능합니다.",
     });
     setTimeout(() => {
       modal.destroy();
@@ -150,8 +152,10 @@ function NFTBalance() {
   function succApprove() {
     let secondsToGo = 5;
     const modal = Modal.success({
-      title: "Success!",
-      content: `Approval is now set, you may list your NFT`,
+      //title: "Success!",
+      title : "성공!",
+      //content: `Approval is now set, you may list your NFT`,
+      content: "마켓플레이스에 판매 권한이 위임되었습니다. 이제 마켓플레이스에 올릴 수 있습니다.",
     });
     setTimeout(() => {
       modal.destroy();
@@ -161,8 +165,10 @@ function NFTBalance() {
   function failList() {
     let secondsToGo = 5;
     const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem listing your NFT`,
+      //title: "Error!",
+      title: "에러!",
+      //content: `There was a problem listing your NFT`,
+      content: "문제가 발생하였습니다.",
     });
     setTimeout(() => {
       modal.destroy();
@@ -172,8 +178,10 @@ function NFTBalance() {
   function failApprove() {
     let secondsToGo = 5;
     const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem with setting approval`,
+      //title: "Error!",
+      title: "에러!",
+      //content: `There was a problem with setting approval`,
+      content: "문제가 발생하였습니다.",
     });
     setTimeout(() => {
       modal.destroy();
@@ -197,7 +205,8 @@ function NFTBalance() {
         {contractABIJson.noContractDeployed && (
           <>
             <Alert
-              message="No Smart Contract Details Provided. Please deploy smart contract and provide address + ABI in the MoralisDappProvider.js file"
+              message="스마트컨트랙트를 블록체인에 올려야 합니다."
+              //message="No Smart Contract Details Provided. Please deploy smart contract and provide address + ABI in the MoralisDappProvider.js file"
               type="error"
             />
             <div style={{ marginBottom: "10px" }}></div>
@@ -206,7 +215,8 @@ function NFTBalance() {
         {!fetchSuccess && (
           <>
             <Alert
-              message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
+              message="문제가 발생하였습니다. 잠시 후 다시 시도해주세요"
+              //message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
               type="warning"
             />
             <div style={{ marginBottom: "10px" }}></div>
@@ -217,7 +227,7 @@ function NFTBalance() {
             <Card
               hoverable
               actions={[
-                <Tooltip title="View On Blockexplorer">
+                <Tooltip title="Blockexplorer에서 보기">
                   <FileSearchOutlined
                     onClick={() =>
                       window.open(
@@ -227,10 +237,10 @@ function NFTBalance() {
                     }
                   />
                 </Tooltip>,
-                <Tooltip title="HashTag">
+                <Tooltip title="해시태그">
                   <TagOutlined onClick={() => handleTagClick(nft)} />
                 </Tooltip>,
-                <Tooltip title="List NFT for sale">
+                <Tooltip title="NFT 판매">
                   <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
                 </Tooltip>,
               ]}
@@ -328,13 +338,13 @@ function NFTBalance() {
         okText="List"
         footer={[
           <Button onClick={() => setVisibility(false)}>
-            Cancel
+            취소
           </Button>,
           <Button onClick={() => approveAll(nftToSend)} type="primary">
-            Approve
+            권한 위임
           </Button>,
           <Button onClick={() => list(nftToSend, price)} type="primary">
-            List
+            판매
           </Button>
         ]}
       >
