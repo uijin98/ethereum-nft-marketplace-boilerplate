@@ -36,7 +36,7 @@ function Account() {
         onClick={() => authenticate({ signingMessage: "Hello World!" })}
       >
         {/*<p style={styles.text}>Authenticate</p>*/}
-        <p style={styles.text}>인증</p>
+        <p style={styles.text}>계정연결</p>
       </div>
     );
   }
