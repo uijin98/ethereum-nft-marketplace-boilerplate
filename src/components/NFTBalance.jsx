@@ -6,7 +6,6 @@ import { FileSearchOutlined, ShoppingCartOutlined, TagOutlined } from "@ant-desi
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
-import  HashTag  from "../HashTag"
 
 const { Meta } = Card;
 
@@ -30,41 +29,12 @@ function NFTBalance() {
   const [visible, setVisibility] = useState(false);
   const [nftToSend, setNftToSend] = useState(null);
 
-  const [visible1, setVisibility1] = useState(false);
-  const [nftToSend1, setNftToSend1] = useState(null);
-
-
   const [price, setPrice] = useState(1);
   const [loading, setLoading] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
   const contractABIJson = JSON.parse(contractABI);
   const listItemFunction = "createMarketItem";
   const ItemImage = Moralis.Object.extend("ItemImages");
-
-  const [tagItem, setTagItem] = useState('')
-  const [tagList, setTagList] = useState([])
-
-  const onKeyPress = e => {
-    if (e.target.value.length !== 0 && e.key === 'Enter') {
-      submitTagItem()
-    }
-  }
-
-  const submitTagItem = () => {
-    let updatedTagList = [...tagList]
-    updatedTagList.push(tagItem)
-    setTagList(updatedTagList)
-    setTagItem('')
-  }
-
-  const deleteTagItem = e => {
-    const deleteTagItem = e.target.parentElement.firstChild.innerText
-    const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
-    setTagList(filteredTagList)
-  }
-
-
-
 
   async function list(nft, listPrice) {
     setLoading(true);
@@ -129,11 +99,6 @@ function NFTBalance() {
   const handleSellClick = (nft) => {
     setNftToSend(nft);
     setVisibility(true);
-  };
-
-  const handleTagClick = (nft) => {
-    setNftToSend1(nft);
-    setVisibility1(true);
   };
 
   function succList() {
@@ -237,9 +202,6 @@ function NFTBalance() {
                     }
                   />
                 </Tooltip>,
-                <Tooltip title="해시태그">
-                  <TagOutlined onClick={() => handleTagClick(nft)} />
-                </Tooltip>,
                 <Tooltip title="NFT 판매">
                   <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
                 </Tooltip>,
@@ -257,78 +219,9 @@ function NFTBalance() {
               key={index}
             >
               <Meta title={nft.name} description={nft.contract_type} />
-              {tagList.map((value, index) => (
-                <p>
-                  #{value}
-                </p>
-              ))}
             </Card>
           ))}
       </div>
-      
-      <Modal
-        title={`HashTag ${nftToSend1?.name} #${nftToSend1?.token_id}`}
-        visible={visible1}
-        onCancel={() => setVisibility1(false)}
-        footer={[
-          <Button onClick={() => setVisibility1(false)}>
-            Save
-          </Button>,
-        ]}
-      >
-        <Spin spinning={loading}>
-          <img
-            src={`${nftToSend1?.image}`}
-            style={{
-              width: "250px",
-              margin: "auto",
-              borderRadius: "10px",
-              marginBottom: "15px",
-            }}
-          />
-          <Input
-            autoFocus
-            placeholder="해시태그를 입력하려면 Enter를 누르세요"
-            tabIndex={2}
-            onChange={(e) => setTagItem(e.target.value)}
-            onKeyPress={onKeyPress}
-            value={tagItem}
-          />
-              {tagList.map((tagItem, index) => {
-                return (
-                  <div 
-                    key={index}
-                    style={{
-                      display:"flex",
-                      justifyContent:"space-between",
-                      margin:"5px",
-                      padding:"5px",
-                      borderRadius:"5px",
-                      color:"black",
-                      fontSize:"13px",
-                    }}
-                  >
-                    <text>{tagItem}</text>
-                    <button 
-                      style={{
-                        display:"flex",
-                        justifyContent:"center",
-                        alignItems:"center",
-                        width:"15px",
-                        height:"15px",
-                        marginLeft:"10px",
-                        backgroundColor:"white",
-                        borderRadius:"50%",
-                        color:'black',
-                        marginTop:"3px"
-                      }}
-                      onClick={deleteTagItem}>X
-                      </button>
-                  </div>
-                )
-              })}
-        </Spin>
-      </Modal>
 
       <Modal
         title={`List ${nftToSend?.name} #${nftToSend?.token_id} For Sale`}
