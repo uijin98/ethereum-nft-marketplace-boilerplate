@@ -16,6 +16,7 @@ import {
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
+import { Footer } from "antd/lib/layout/layout";
 const { Meta } = Card;
 
 const styles = {
@@ -127,8 +128,8 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   function succPurchase() {
     let secondsToGo = 5;
     const modal = Modal.success({
-      title: "Success!",
-      content: `You have purchased this NFT`,
+      title: "성공!",
+      content: `NFT 구입에 성공하였습니다.`,
     });
     setTimeout(() => {
       modal.destroy();
@@ -138,8 +139,8 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   function failPurchase() {
     let secondsToGo = 5;
     const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem when purchasing this NFT`,
+      title: "오류!",
+      content: `NFT 구입 과정에 문제가 발생하였습니다.`,
     });
     setTimeout(() => {
       modal.destroy();
@@ -210,7 +211,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                       fontWeight: "normal",
                     }}
                   >
-                    Collection Size: {`${totalNFTs}`}
+                    상품 개수: {`${totalNFTs}`}
                   </div>
                 </>
               </div>
@@ -224,7 +225,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
               <Card
                 hoverable
                 actions={[
-                  <Tooltip title="View Collection">
+                  <Tooltip title="상품 보기">
                     <RightCircleOutlined
                       onClick={() => setInputValue(nft?.addrs)}
                     />
@@ -251,7 +252,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
               <Card
                 hoverable
                 actions={[
-                  <Tooltip title="View On Blockexplorer">
+                  <Tooltip title="거래 내역 확인">
                     <FileSearchOutlined
                       onClick={() =>
                         window.open(
@@ -261,7 +262,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                       }
                     />
                   </Tooltip>,
-                  <Tooltip title="Buy NFT">
+                  <Tooltip title="NFT 구매">
                     <ShoppingCartOutlined onClick={() => handleBuyClick(nft)} />
                   </Tooltip>,
                 ]}
@@ -290,7 +291,8 @@ function NFTTokenIds({ inputValue, setInputValue }) {
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => purchase()}
-            okText="Buy"
+            cancelText="취소"
+            okText="구매"
           >
             <Spin spinning={loading}>
               <div
@@ -323,7 +325,10 @@ function NFTTokenIds({ inputValue, setInputValue }) {
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => setVisibility(false)}
+            cancelText="취소"
+            okText="확인"
           >
+              
             <img
               src={nftToBuy?.image}
               style={{
@@ -334,7 +339,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
               }}
             />
             <Alert
-              message="This NFT is currently not for sale"
+              message="현재 NFT가 판매 중이 아닙니다."
               type="warning"
             />
           </Modal>

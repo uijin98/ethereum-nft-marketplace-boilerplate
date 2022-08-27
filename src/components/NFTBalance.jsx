@@ -227,7 +227,7 @@ function NFTBalance() {
             <Card
               hoverable
               actions={[
-                <Tooltip title="Blockexplorer에서 보기">
+                <Tooltip title="Etherscan에서 보기">
                   <FileSearchOutlined
                     onClick={() =>
                       window.open(
@@ -360,7 +360,7 @@ function NFTBalance() {
           />
           <Input
             autoFocus
-            placeholder="Listing Price in ETH"
+            placeholder="가격을 입력하세요."
             onChange={(e) => setPrice(e.target.value)}
           />
         </Spin>

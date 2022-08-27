@@ -56,14 +56,14 @@ const CardNews = () => {
         onCancel={() => setVisibility1(false)}
         footer={[
           <Button onClick={() => setVisibility1(false)}>
-            OK
+            확인
           </Button>,
         ]}  
       >
         <div>
           <Image
             src={NFT1}
-            style={{ height: "500px", paddingBottom: "20px" }}
+            tyle={{ height: "500px", paddingBottom: "20px" }}
             preview={false}
           />
           <Image
@@ -90,7 +90,7 @@ const CardNews = () => {
         onCancel={() => setVisibility2(false)}
         footer={[
           <Button onClick={() => setVisibility2(false)}>
-            OK
+            확인
           </Button>,
         ]}  
       >
@@ -124,7 +124,7 @@ const CardNews = () => {
         onCancel={() => setVisibility3(false)}
         footer={[
           <Button onClick={() => setVisibility3(false)}>
-            OK
+            확인
           </Button>,
         ]}  
       >
