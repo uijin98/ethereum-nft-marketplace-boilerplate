@@ -16,6 +16,11 @@ import MNNS2 from '../img/MNNS (2).png';
 import MNNS3 from '../img/MNNS (3).png';
 import MNNS4 from '../img/MNNS (4).png';
 import MNNS5 from '../img/MNNS (5).png';
+import Etherscan1 from '../img/Etherscan (1).png';
+import Etherscan2 from '../img/Etherscan (2).png';
+import Etherscan3 from '../img/Etherscan (3).png';
+import Etherscan4 from '../img/Etherscan (4).png';
+
 
 const styles = {
   table: {
@@ -29,6 +34,7 @@ const CardNews = () => {
   const [visible1, setVisibility1] = useState(false)
   const [visible2, setVisibility2] = useState(false)
   const [visible3, setVisibility3] = useState(false)
+  const [visible4, setVisibility4] = useState(false)
   return (
     <>
       <div style={styles.table}>
@@ -48,6 +54,12 @@ const CardNews = () => {
           src={MNNS1} 
           style={{ height: "580px", marginRight: "20px", paddingRight: "20px", paddingBottom: "20px"}}
           onClick={() => setVisibility3(true)}
+          preview={false}
+        />
+        <Image
+          src={Etherscan1} 
+          style={{ height: "580px", marginRight: "20px", paddingRight: "20px", paddingBottom: "20px"}}
+          onClick={() => setVisibility4(true)}
           preview={false}
         />
       </div>
@@ -155,8 +167,41 @@ const CardNews = () => {
             preview={false}
           />
         </div>
-
       </Modal>
+
+      <Modal
+        visible={visible4}
+        onCancel={() => setVisibility4(false)}
+        footer={[
+          <Button onClick={() => setVisibility4(false)}>
+            확인
+          </Button>,
+        ]}  
+      >
+        <div>
+          <Image
+            src={Etherscan1}
+            style={{ height: "500px", paddingBottom: "20px" }}
+            preview={false}
+          />
+          <Image
+            src={Etherscan2}
+            style={{ height: "500px", paddingBottom: "20px" }}
+            preview={false}
+          />
+          <Image
+            src={Etherscan3}
+            style={{ height: "500px", paddingBottom: "20px" }}
+            preview={false}
+          />
+          <Image
+            src={Etherscan4}
+            style={{ height: "500px", paddingBottom: "20px" }}
+            preview={false}
+          />
+        </div>
+      </Modal>
+
     </>
   );
 };
