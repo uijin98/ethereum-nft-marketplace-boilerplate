@@ -17,9 +17,13 @@ import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
 import Text from "antd/lib/typography/Text";
+
+
+
 import NFTMarketTransactions from "components/NFTMarketTransactions";
 import CardNews from "components/CardNews";
 const { Header, Footer } = Layout;
+
 
 const styles = {
   content: {
@@ -118,8 +122,11 @@ const App = ({ isServerInfo }) => {
               <NFTBalance />
             </Route>
             <Route path="/NFTMarketPlace">
+
               <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue}/>
+
             </Route>
+
             <Route path="/Transactions">
               <NFTMarketTransactions />
             </Route>
