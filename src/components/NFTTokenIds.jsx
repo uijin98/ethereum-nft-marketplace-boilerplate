@@ -11,6 +11,7 @@ import { useNFTTokenIds } from "hooks/useNFTTokenIds";
 import {
   FileSearchOutlined,
   RightCircleOutlined,
+  CreditCardOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
@@ -263,8 +264,11 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                     />
                   </Tooltip>,
                   <Tooltip title="NFT 구매">
-                    <ShoppingCartOutlined onClick={() => handleBuyClick(nft)} />
+                    <CreditCardOutlined onClick={() => handleBuyClick(nft)} />
                   </Tooltip>,
+                  <Tooltip title="장바구니 추가">
+                  <ShoppingCartOutlined/>
+                </Tooltip>,
                 ]}
                 style={{ width: 240, border: "2px solid #e7eaf3" }}
                 cover={
