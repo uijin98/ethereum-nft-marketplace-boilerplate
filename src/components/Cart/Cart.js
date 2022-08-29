@@ -19,7 +19,7 @@ function Cart({ items, currency, cart, total, removeFromCart, updateAmount }) {
      
     return (
         <div>
-            <h3>Shopping Cart</h3>
+            <h3>찜 목록</h3>
 
             <div className="cart">
                 <div className="panel panel-default">
@@ -33,7 +33,7 @@ function Cart({ items, currency, cart, total, removeFromCart, updateAmount }) {
                         {cart === 0 && (
                             <div className="alert alert-info">Cart is empty</div>
                         )}
-                        <div className="cart__total">Total: {total} {currency}</div>
+                       {/* <div className="cart__total">Total: {total} {currency}</div> */}
                     </div>
                 </div>
             </div>
