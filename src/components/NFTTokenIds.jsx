@@ -21,11 +21,13 @@ import { useNFTTokenIds } from "hooks/useNFTTokenIds";
 import {
   FileSearchOutlined,
   RightCircleOutlined,
-  ShoppingCartOutlined,
+  CreditCardOutlined,
+  HeartOutlined
 } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
 import { useWeb3ExecuteFunction } from "react-moralis";
+import { Footer } from "antd/lib/layout/layout";
 const { Meta } = Card;
 
 
@@ -144,13 +146,14 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
     //addToCart(nft.token_id);
     console.log(nft.image);
     //setVisibility(true);
+
   };
 
   function succPurchase() {
     let secondsToGo = 5;
     const modal = Modal.success({
-      title: "Success!",
-      content: `You have purchased this NFT`,
+      title: "성공!",
+      content: `NFT 구입에 성공하였습니다.`,
     });
     setTimeout(() => {
       modal.destroy();
@@ -160,8 +163,8 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
   function failPurchase() {
     let secondsToGo = 5;
     const modal = Modal.error({
-      title: "Error!",
-      content: `There was a problem when purchasing this NFT`,
+      title: "오류!",
+      content: `NFT 구입 과정에 문제가 발생하였습니다.`,
     });
     setTimeout(() => {
       modal.destroy();
@@ -233,7 +236,7 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
                       fontWeight: "normal",
                     }}
                   >
-                    Collection Size: {`${totalNFTs}`}
+                    상품 개수: {`${totalNFTs}`}
                   </div>
                 </>
               </div>
@@ -242,21 +245,14 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
 
           </>
         )}
-        <div className="col-md-4">
-        <Cart to="/cart">
-        <div>
-          <strong>Shopping cart</strong>
-          <span>{cartLength}</span>
-        </div>
-      </Cart>
-        </div>
+      
         <div style={styles.NFTs}>
           {inputValue === "explore" &&
             NFTCollections?.map((nft, index) => (
               <Card
                 hoverable
                 actions={[
-                  <Tooltip title="View Collection">
+                  <Tooltip title="상품 보기">
                     <RightCircleOutlined
                       onClick={() => setInputValue(nft?.addrs)}
                     />
@@ -283,7 +279,7 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
               <Card
                 hoverable
                 actions={[
-                  <Tooltip title="View On Blockexplorer">
+                  <Tooltip title="거래 내역 확인">
                     <FileSearchOutlined
                       onClick={() =>
                         window.open(
@@ -293,12 +289,15 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
                       }
                     />
                   </Tooltip>,
-                  <Tooltip title="Buy NFT">
-                    <ShoppingCartOutlined onClick={() => handleBuyClick(nft)} />
+                  <Tooltip title="NFT 구매">
+                    <CreditCardOutlined onClick={() => handleBuyClick(nft)} />
                   </Tooltip>,
-                  <Tooltip title="Add to Cart">
-                    <ShoppingCartOutlined onClick={() => handleCartClick(nft)} />
+//<<<<<<< HEAD
+                  <Tooltip title="찜하기">
+                    <HeartOutlined onClick={() => handleCartClick(nft)} />
                   </Tooltip>,
+//=======
+//>>>>>>> b59384df6d58b4a31e16b9ce7f3f5bb9b0a7c0c1
                 ]}
                 style={{ width: 240, border: "2px solid #e7eaf3" }}
                 cover={
@@ -325,7 +324,8 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => purchase()}
-            okText="Buy"
+            cancelText="취소"
+            okText="구매"
           >
             <Spin spinning={loading}>
               <div
@@ -358,7 +358,10 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => setVisibility(false)}
+            cancelText="취소"
+            okText="확인"
           >
+              
             <img
               src={nftToBuy?.image}
               style={{
@@ -369,12 +372,20 @@ function NFTTokenIds({ inputValue, setInputValue, cartLength }) {
               }}
             />
             <Alert
-              message="This NFT is currently not for sale"
+              message="현재 NFT가 판매 중이 아닙니다."
               type="warning"
             />
           </Modal>
         )}
       </div>
+      <div className="col-md-4">
+        <Cart to="/cart">
+        <div>
+          <strong>찜 목록</strong>
+          <span>{cartLength}</span>
+        </div>
+      </Cart>
+        </div>
     </>
   );
 }

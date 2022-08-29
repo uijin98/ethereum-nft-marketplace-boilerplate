@@ -66,12 +66,12 @@ function NFTMarketTransactions() {
 
   const columns = [
     {
-      title: "Date",
+      title: "날짜",
       dataIndex: "date",
       key: "date",
     },
     {
-      title: "Item",
+      title: "상품",
       key: "item",
       render: (text, record) => (
         <Space size="middle">
@@ -81,7 +81,7 @@ function NFTMarketTransactions() {
       ),
     },
     {
-      title: "Collection",
+      title: "판매자",
       key: "collection",
       render: (text, record) => (
         <Space size="middle">
@@ -90,7 +90,7 @@ function NFTMarketTransactions() {
       ),
     },
     {
-      title: "Transaction Status",
+      title: "거래 상태",
       key: "tags",
       dataIndex: "tags",
       render: (tags) => (
@@ -100,13 +100,13 @@ function NFTMarketTransactions() {
             let status = "BUY";
             if (tag === false) {
               color = "volcano";
-              status = "waiting";
+              status = "대기";
             } else if (tag === true) {
               color = "green";
-              status = "confirmed";
+              status = "완료";
             }
             if (tag === walletAddress) {
-              status = "SELL";
+              status = "판매";
             }
             return (
               <Tag color={color} key={tag}>
@@ -118,7 +118,7 @@ function NFTMarketTransactions() {
       ),
     },
     {
-      title: "Price",
+      title: "가격",
       key: "price",
       dataIndex: "price",
       render: (e) => (
@@ -132,7 +132,7 @@ function NFTMarketTransactions() {
 
   const data = fetchMarketItems?.map((item, index) => ({
     key: index,
-    date: moment(item.updatedAt).format("DD-MM-YYYY HH:mm"),
+    date: moment(item.updatedAt).format("YYYY-MM-DD HH:mm"),
     collection: item.nftContract,
     item: item.tokenId,
     tags: [item.seller, item.sold],

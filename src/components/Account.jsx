@@ -33,7 +33,7 @@ function Account() {
     return (
       <div
         style={styles.account}
-        onClick={() => authenticate({ signingMessage: "Hello World!" })}
+        onClick={() => authenticate({ signingMessage: "Hello MNNS!" })}
       >
         {/*<p style={styles.text}>Authenticate</p>*/}
         <p style={styles.text}>계정연결</p>
@@ -61,7 +61,7 @@ function Account() {
         style={{ fontSize: "16px", fontWeight: "500" }}
         width="400px"
       >
-        Account
+        계정
         <Card
           style={{
             marginTop: "10px",
@@ -82,7 +82,7 @@ function Account() {
               rel="noreferrer"
             >
               <SelectOutlined style={{ marginRight: "5px" }} />
-              View on Explorer
+              Etherscan으로 보기
             </a>
           </div>
         </Card>
@@ -101,7 +101,7 @@ function Account() {
             setIsModalVisible(false);
           }}
         >
-          Disconnect Wallet
+          지갑 연결 해제
         </Button>
       </Modal>
     </>

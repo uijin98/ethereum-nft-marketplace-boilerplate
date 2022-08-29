@@ -76,7 +76,7 @@ const App = ({ isServerInfo }) => {
         {/*<Header style={styles.header}>*/}
         <Header style={{height: "127px", backgroundColor: "#F2B310"}}>
           <div style={{display: 'flex', marginTop:"10px"}}>
-            <NavLink to='/NFTMarketPlace'><Logo /></NavLink>
+            <Logo />
             <SearchCollections setInputValue={setInputValue}/>
             <div style={styles.headerRight}>
               <Chains />
